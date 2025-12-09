@@ -33,13 +33,13 @@ a block, the block gets destroyed. Lose when the ball goes down to the void. Add
 ### Extra Features
 What are some features that are not essential to the program, but you would like to see (provided you have time after completing the necessary features. Theses can be customizations that are not part of the core requirements.
 
-Adding new levels, make the paddle (platform) to change color whenever the ball hits it, Make the ball go faster each time it hits the paddle (with a speed limit of course).
+Adding new levels, make the paddle (platform) to change color whenever the ball hits it, Make the ball go faster each time it hits the paddle (with a speed limit of course). Blocks with higher health than other blocks.
 
 ### Array Usage
 How will you be using arrays in this project?
 
 1D Array:
-- The blocks you've destroyed
+- None will be used at the moment.
 - 
 
 2D Array:
@@ -52,6 +52,7 @@ How will your program be controlled? List all keyboard commands and mouse intera
 Keyboard Commands:
 - r = reset
 - spacebar = pause/unpause
+- a and d = left/right
   
 
 Mouse Control:
@@ -64,24 +65,24 @@ What classes will you be creating for this project? Include the instance variabl
 
 CLASS NAME0: Blocks
 - Instance variables:
-  - size
+  - int size
   - color
-  - center
-  - 
+  - Pvector center
+  - boolean isDestroyed
 - METHODS
-  - checkCollisions()
-  - destroyed()
-  - display()
+  - boolean checkCollisions()
+  - void destroy()
+  - void display()
 
 CLASS NAME1: Projetile
 - Instance variables:
-  - velocity
-  - size
+  - int velocity
+  - int size
   - color
-  - center
-  - 
+  - Pvector center
+  - Pvector position 
 - METHODS
-  - display()
-  - checkCollisions()
-  - move()
-  - 
+  - void display()
+  - boolean checkCollisions()
+  - void move()
+    
