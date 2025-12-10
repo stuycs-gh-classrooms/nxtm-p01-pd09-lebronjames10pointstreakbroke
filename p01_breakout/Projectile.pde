@@ -2,13 +2,15 @@ class Projectile {
   PVector center;   
   PVector velocity; 
   int size;
+  int lives;
   color colour;
   
-  Projectile(PVector c, PVector v, int s, color col) {
+  Projectile(PVector c, PVector v, int s, color col, int l) {
     center = c.copy();
     velocity = v.copy();
     size = s;
     colour = col;
+    lives = l;
   }
   
   void display() {
@@ -17,6 +19,8 @@ class Projectile {
   }
   
   void move() {
+    if (lives != 0)
+    {
     center.add(velocity);  // move the ball
     
     // bounce off left/right walls
@@ -24,16 +28,20 @@ class Projectile {
       velocity.x *= -1;
     }
     
-    // bounce off top wall
-    if (center.y < size/2) {
+    //bounce off top
+   
+  
+    if (center.y == 0) {
       velocity.y *= -1;
+      
     }
     
     // bounce off bottom (reset)
     if (center.y > height - size/2) {
-      // reset ball to center
+      // reset ball to center (-1 life)
       center = new PVector(width/2, 300);
       velocity = new PVector(5, -5);
+      lives--;
     }
     
     // bounce off platform
@@ -48,4 +56,10 @@ class Projectile {
       velocity.x += hitPos * 5;  // adjust x velocity
     }
   }
+  }
+ boolean collisionCheck(Blocks other) 
+    {
+  return ( this.center.dist(other.center)
+     <= (this.size/2 + other.size/2) );
+    }
 }
