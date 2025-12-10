@@ -1,24 +1,34 @@
 Blocks[][] grid;
 Platform platform;
+Projectile ball;
 int size = 40;
 
-void setup() {
-size(960,540);
-grid = new Blocks[5][24];
-makeGrid(grid);
 
+
+void setup() {
+  size(960, 540);
+  grid = new Blocks[5][24];
+  makeGrid(grid);
+  platform = new Platform(new PVector(width/2, 500), new PVector(150, 20));
+   // Create the ball
+  ball = new Projectile(new PVector(width/2, 300), new PVector(5, -5), 20, color(0, 0, 255));
 }
 
 void draw() {
-  background(255,255,255);
-  drawPlatform();
-  drawGrid(grid);
-}
-//heavily sourced from grid.pde
+  background(255);
 
-void drawPlatform() {
-  platform = new Platform((mouseX,500),(150,200))
+  // Update platform
+  platform.display();
+  platform.update();
+
+  // Update and display grid
+  drawGrid(grid);
+
+  // Update and display projectile
+  ball.move();
+  ball.display();
 }
+
 void makeGrid(Blocks[][] g) {
   
 
@@ -55,7 +65,9 @@ void collisions() {
 }
 
 void keyPressed() {
-  if (key == 'A') {
-    
+  if (key == 'A' || key == 'a') {
+    platform.pos.x -= 10;  // move left
+  } else if (key == 'D' || key == 'd') {
+    platform.pos.x += 10;  // move right
   }
 }
