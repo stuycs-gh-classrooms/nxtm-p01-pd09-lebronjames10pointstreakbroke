@@ -57,9 +57,16 @@ class Projectile {
     }
   }
   }
- boolean collisionCheck(Blocks other) 
-    {
-  return ( this.center.dist(other.center)
-     <= (this.size/2 + other.size/2) );
-    }
+  boolean collisionCheck(Blocks other) {
+  
+  float dx = abs(center.x - other.center.x);
+  float dy = abs(center.y - other.center.y);
+
+ 
+  if (dx <= other.w/2 + size/2 && dy <= other.h/2 + size/2) {
+    return true;
+  } 
+  return false;
+}
+
 }

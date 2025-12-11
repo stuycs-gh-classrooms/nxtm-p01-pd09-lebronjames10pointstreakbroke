@@ -1,13 +1,13 @@
 Blocks[][] grid;
 Platform platform;
 Projectile ball;
-int size = 40;
+
 
 
 
 void setup() {
   size(960, 540);
-  grid = new Blocks[5][24];
+  grid = new Blocks[5][6];
   makeGrid(grid);
   platform = new Platform(new PVector(width/2, 500), new PVector(150, 20));
    // Create the ball
@@ -26,40 +26,38 @@ void draw() {
 
   // Update and display projectile
   ball.move();
+  collisionsBlock(ball,grid);
   ball.display();
 }
 
-void makeGrid(Blocks[][] g) {
-  
-
-  float startX = 0;
-  float startY = 0;
-
-  // place each ball in its centered position
-  for (int r = 0; r < g.length; r++) {
-    for (int c = 0; c < g[0].length; c++) {
-
-      // compute the center position of each ball
-      float x = startX + c * size + size / 2;
-      float y = startY + r * size + size / 2;
-
-      // create the ball
-      g[r][c] = new Blocks(new PVector(x, y), size, color(255,0,255));
-      
-    }
-  }
-}
-
 void drawGrid(Blocks[][] g) {
-  // draw every ball in the grid
   for (int r = 0; r < g.length; r++) {
     for (int c = 0; c < g[0].length; c++) {
       if (g[r][c] != null) {
-        g[r][c].display();
+        g[r][c].display(); // just draw, DO NOT recreate
       }
     }
   }
 }
+
+
+void makeGrid(Blocks[][] g) {
+  int blockWidth = 160;  // rectangle width
+  int blockHeight = 40; // rectangle height
+
+  for (int r = 0; r < g.length; r++) {
+    for (int c = 0; c < g[0].length; c++) {
+      float x = c * blockWidth + blockWidth / 2;
+      float y = r * blockHeight + blockHeight / 2;
+
+      color col = color(random(50, 255), random(50, 255), random(50, 255));
+
+      g[r][c] = new Blocks(new PVector(x, y), blockWidth, blockHeight, col);
+    }
+  }
+}
+
+
 
 void collisionsBlock(Projectile b, Blocks[][] g) {
     // check each grid ball

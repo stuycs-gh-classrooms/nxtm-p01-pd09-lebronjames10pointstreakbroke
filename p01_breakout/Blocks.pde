@@ -1,22 +1,18 @@
 class Blocks {
-  int size;
-  color colour;
   PVector center;
-  boolean isDestroyed;
-  
-  Blocks(PVector p, int s,color c)
-  {
-    size = s;
-    colour = c;
-    center = new PVector(p.x,p.y);
+  int w, h;
+  color colour;
+
+  Blocks(PVector c, int w, int h, color col) {
+    center = c.copy();
+    this.w = w;
+    this.h = h;
+    colour = col;
   }
-  
+
   void display() {
     fill(colour);
-    circle(center.x,center.y, size);
-  }
-  
- 
-  void destroy() {
+    rectMode(CENTER); // center-based drawing
+    rect(center.x, center.y, w, h);
   }
 }
