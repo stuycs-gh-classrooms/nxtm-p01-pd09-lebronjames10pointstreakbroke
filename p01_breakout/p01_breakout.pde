@@ -2,8 +2,8 @@ Blocks[][] grid;
 Platform platform;
 Projectile ball;
 
-
-
+boolean playing = true;
+color colors[] = {color(255,0,0), color(0,255,0), color(0,0,255)};
 
 void setup() {
   size(960, 540);
@@ -23,11 +23,13 @@ void draw() {
 
   // Update and display grid
   drawGrid(grid);
-
+  if (playing) {
   // Update and display projectile
   ball.move();
   collisionsBlock(ball,grid);
   ball.display();
+  }
+
 }
 
 void drawGrid(Blocks[][] g) {
@@ -50,7 +52,7 @@ void makeGrid(Blocks[][] g) {
       float x = c * blockWidth + blockWidth / 2;
       float y = r * blockHeight + blockHeight / 2;
 
-      color col = color(random(50, 255), random(50, 255), random(50, 255));
+      color col = colors[int(random(colors.length))];
 
       g[r][c] = new Blocks(new PVector(x, y), blockWidth, blockHeight, col);
     }
@@ -76,7 +78,16 @@ void collisionsBlock(Projectile b, Blocks[][] g) {
     }
   }
 }
-
+void gameOver() {
+  if (ball.lives == 0 )
+  {
+    playing = false;
+  }
+ else {
+   playing = true;
+    
+  }
+}
 void keyPressed() {
   /* SCRAPPED (for now)
   if (key == 'A' || key == 'a') {
@@ -86,3 +97,10 @@ void keyPressed() {
   }
   */
 }
+
+/**
+ * Mouse 2D. 
+ * 
+ * Moving the mouse changes the position and size of each box. 
+ */
+ 

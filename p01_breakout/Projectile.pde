@@ -45,10 +45,10 @@ class Projectile {
     }
     
     // bounce off platform
-    if (center.y + size/2 >= platform.pos.y && 
-        center.y - size/2 <= platform.pos.y + platform.size.y &&
-        center.x + size/2 >= platform.pos.x &&
-        center.x - size/2 <= platform.pos.x + platform.size.x) {
+    if (center.y + size/2 >= platform.pos.y - 20  && 
+        center.y - size/2 <= platform.pos.y + platform.size.y - 20   &&
+        center.x + size/2 >= platform.pos.x   &&
+        center.x - size/2 <= platform.pos.x + platform.size.x  ) {
       velocity.y *= -1;
 
       
