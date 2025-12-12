@@ -39,11 +39,11 @@ Adding new levels, make the paddle (platform) to change color whenever the ball 
 How will you be using arrays in this project?
 
 1D Array:
-- None will be used at the moment.
+- color[] colors  - stores the available colors for blocks (red, green, blue)
 - 
 
 2D Array:
-- Make the grid of blocks using a 2D array
+- Blocks[][] grid - creates and manages the grid of blocks 
 
 
 ### Controls
@@ -52,12 +52,12 @@ How will your program be controlled? List all keyboard commands and mouse intera
 Keyboard Commands:
 - r = reset
 - spacebar = pause/unpause
-- a and d = left/right
+
   
 
 Mouse Control:
 - Mouse movement: Move the mouse to get the platform moving
-- Mouse pressed: Nothing at the moment (will be subject to change)
+
 
 
 ### Classes
@@ -65,24 +65,30 @@ What classes will you be creating for this project? Include the instance variabl
 
 CLASS NAME0: Blocks
 - Instance variables:
-  - int size
-  - color
+  - int w
+  - int h
+  - color colour
   - Pvector center
-  - boolean isDestroyed
 - METHODS
-  - boolean checkCollisions()
-  - void destroy()
   - void display()
 
 CLASS NAME1: Projetile
 - Instance variables:
-  - int velocity
+  - int lives
   - int size
-  - color
+  - color colour
   - Pvector center
-  - Pvector position 
+  - Pvector velocity 
 - METHODS
   - void display()
-  - boolean checkCollisions()
+  - boolean collisionCheck(Blocks other)
   - void move()
-    
+CLASS NAME2: Platform
+- Instance variables:
+  - PVector pos
+  - PVector size
+  - color colour
+- METHODS
+  - void display()
+  - void update()
+
