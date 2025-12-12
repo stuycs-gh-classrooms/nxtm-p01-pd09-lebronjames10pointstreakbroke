@@ -1,22 +1,30 @@
 Blocks[][] grid;
 Platform platform;
 Projectile ball;
+
 boolean playing = true;
 boolean paused = false;
 int score = 0;
 color colors[] = {color(255, 0, 0), color(0, 255, 0), color(0, 0, 255)};
 
+
+
 void setup() {
+
   size(960, 540);
   grid = new Blocks[5][6];
   makeGrid(grid);
   platform = new Platform(new PVector(width/2, 500), new PVector(150, 20));
   // create the ball
+
   ball = new Projectile(new PVector(width/2, 300), new PVector(5, -5), 20, color(0, 0, 255), 3);
 }
 
 void draw() {
+
   background(255);
+  
+
   // update platform
   platform.display();
   platform.update();
@@ -62,6 +70,7 @@ void draw() {
     textAlign(CENTER, CENTER);
     textSize(64);
     text("YOU LOSE!", width/2, height/2);
+  
     return;   // stop drawing anything else
   }
 
@@ -75,6 +84,8 @@ void draw() {
     checkAllBlocksDestroyed();
   }
 }
+
+
 
 void drawGrid(Blocks[][] g) {
   for (int r = 0; r < g.length; r++) {
@@ -125,6 +136,7 @@ void collisionPlatform(Projectile b, Platform p) {
   if (ballBottom >= platformTop &&
     b.center.x >= p.pos.x - p.size.x/2 &&
     b.center.x <= p.pos.x + p.size.x/2 &&
+     b.center.y < height - p.size.y &&
     b.velocity.y > 0) {  // only bounce if moving downward
 
     // always bounce upward

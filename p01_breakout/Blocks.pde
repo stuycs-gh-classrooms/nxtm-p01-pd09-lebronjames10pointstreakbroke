@@ -1,4 +1,5 @@
 class Blocks {
+ 
   PVector center;
   int w, h;
   color colour;
@@ -11,6 +12,7 @@ class Blocks {
   }
   
   void display() {
+ 
     fill(colour);
     rectMode(CENTER); // center-based drawing
     rect(center.x, center.y, w, h);
